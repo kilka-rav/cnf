@@ -2,6 +2,7 @@ module;
 
 #include <tuple>
 #include <vector>
+#include <cmath>
 #include <iostream>
 
 export module SAT;
@@ -17,6 +18,13 @@ export int getNumberVars(std::vector<std::tuple<int, int, int>>& clauses) {
         result = std::max(std::abs(c), result);
     }
     return result;
+}
+
+void print(std::vector<int>& sol) {
+    for(auto s : sol) {
+        std::cout << s << " ";
+    }
+    std::cout << std::endl;
 }
 
 export bool isSolution(std::vector<std::tuple<int, int, int>>& clauses, std::vector<int>& possibleSolution) {
@@ -40,6 +48,8 @@ export bool isSolution(std::vector<std::tuple<int, int, int>>& clauses, std::vec
         } else {
             c1 = !possibleSolution[std::abs(c) - 1];
         }
+        //std::cout << "a int: " <<  a << " " << b << " " << c << std::endl;
+        //std::cout << "a bool: " << a1 << " " << b1 << " " << c1 << std::endl;
         if (!a1 && !b1 && !c1) {
             return false;
         }
@@ -47,23 +57,21 @@ export bool isSolution(std::vector<std::tuple<int, int, int>>& clauses, std::vec
     return true;
 }
 
-export void increment(std::vector<int>& possibleSolution) {
-    bool waitOne = false;
-    for(auto it = possibleSolution.end(); it != possibleSolution.begin(); it--) {
-        if (*it == 1 && waitOne) {
-            *it = 0;
-            return;
-        }
+export void increment(std::vector<int>& possibleSolution) {    
+    for(auto it = possibleSolution.begin(); it != possibleSolution.end(); it++) {
         if (*it == 0) {
             *it = 1;
-            waitOne = true;
+            return;
+        } else if (*it == 1) {
+            *it = 0;
         }
     }
     return;
 }
 
+
 export bool findSolution(std::vector<std::tuple<int, int, int>>& clauses, std::vector<int>& possibleSolution, int index) {
-    if (index == possibleSolution.size()) {
+    if (index == std::pow(2, possibleSolution.size())) {
         return false;
     }
     
@@ -71,5 +79,5 @@ export bool findSolution(std::vector<std::tuple<int, int, int>>& clauses, std::v
         return true;
     }
     increment(possibleSolution);
-    findSolution(clauses, possibleSolution, index + 1);
+    return findSolution(clauses, possibleSolution, index + 1);
 }

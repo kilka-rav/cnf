@@ -6,12 +6,11 @@ import SAT;
 #include <vector>
 
 int main() {
-    std::vector<std::tuple<int, int, int>> clauses = {{1, 2, -3}, {2, 3, -1}};
+    std::vector<std::tuple<int, int, int>> clauses = {{5, 5, 5}, {-5, -5, -5}};
     int numberVars = getNumberVars(clauses);
     std::vector<int> solution(numberVars);
-    std::cout << numberVars << std::endl;
-    std::cout << solution.size() << std::endl;
-    if (!findSolution(clauses, solution, 0)) {
+    bool sol = findSolution(clauses, solution, 0);
+    if (!sol) {
         std::cout << "Solution wasn't find" << std::endl;
     } else {
         std::cout << "Solution was find" << std::endl;
