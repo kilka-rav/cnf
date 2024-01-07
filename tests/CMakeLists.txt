@@ -1,12 +1,22 @@
 enable_testing()
 
 add_executable(
-  dummy_test
-  dummy_test.cpp
+  runtime_test
+  runtime_test.cpp
 )
 
-target_link_libraries(dummy_test
+add_executable(
+  compile_test
+  compile_test.cpp
+)
+
+target_link_libraries(runtime_test
     SAT
+    GTest::gtest_main
+)
+
+target_link_libraries(compile_test
+    SATCompile
     GTest::gtest_main
 )
 
