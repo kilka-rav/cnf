@@ -5,8 +5,9 @@ import SAT;
 #include <bitset>
 #include <vector>
 
+
 int main() {
-    std::vector<std::tuple<int, int, int>> clauses = {{5, 5, 5}, {-5, -5, -5}};
+    std::vector<std::tuple<int, int, int>> clauses = {{5, 17, 5}, {-5, -5, -5}};
     int numberVars = getNumberVars(clauses);
     std::vector<int> solution(numberVars);
     bool sol = findSolution(clauses, solution, 0);

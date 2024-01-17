@@ -2,7 +2,6 @@ import SAT;
 
 #include <iostream>
 #include <tuple>
-#include <bitset>
 #include <vector>
 #include <gtest/gtest.h>
 
