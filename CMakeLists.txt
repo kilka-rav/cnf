@@ -12,9 +12,9 @@ add_library(SAT)
 add_library(SATCompile)
 add_library(SATHybrid)
 
-add_executable(runtime_solution runtime_solution.cxx)
-add_executable(compile_solution compile_solution.cxx)
-add_executable(hybrid_solution hybrid_solution.cxx)
+add_executable(runtime_solution runtime_solution.cpp)
+add_executable(compile_solution compile_solution.cpp)
+add_executable(hybrid_solution hybrid_solution.cpp)
 target_sources(SAT 
     PUBLIC
         FILE_SET CXX_MODULES FILES SAT.cpp)

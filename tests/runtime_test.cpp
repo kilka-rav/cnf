@@ -38,3 +38,13 @@ TEST(Simple, fourth) {
     bool sol = findSolution(clauses, solution, 0);
     EXPECT_FALSE(sol);
 }
+
+/*
+TEST(Time, 1000clauses) {
+    std::vector<std::tuple<int, int, int>> clauses = 
+    int numberVars = getNumberVars(clauses);
+    std::vector<int> solution(numberVars);
+    bool sol = findSolution(clauses, solution, 0);
+    EXPECT_FALSE(sol);
+}
+*/
