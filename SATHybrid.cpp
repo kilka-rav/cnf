@@ -8,6 +8,19 @@ module;
 
 export module SATHybrid;
 
+export template<int size>
+consteval int getMaximumVariable(const std::array<std::array<int, 3>, size>& clauses) {
+    int max = 0;
+    for(auto&& clause : clauses) {
+        for(auto&& el : clause) {
+            if (max < el) {
+                max = el;
+            }
+        }
+    }
+    return max;
+}
+
 export template<std::size_t N, std::semiregular T>
 consteval std::array<T, N> array_repeat(const T& value) {
     std::array<T, N> ret;
@@ -70,16 +83,12 @@ bool isSolution(const std::array<std::array<int, 3>, size>& clauses, std::array<
         } else {
             c1 = !possibleSolution[std::abs(c) - 1];
         }
+
         if (!a1 && !b1 && !c1) {
             return false;
         }
     }
     //replace -1 -> 1 in final solution
-    for(auto&& variable : possibleSolution) {
-        if (variable < 0) {
-            variable = 1;
-        }
-    }
     return true;
     
 }
@@ -96,7 +105,9 @@ bool findSolutionRuntime(const std::array<std::array<int, 3>, size>& clauses, st
                 return true;
             }
             preSolution[i] = 1;
-            return findSolutionRuntime<maxVal, size>(clauses, preSolution);
+            if (findSolutionRuntime<maxVal, size>(clauses, preSolution)) {
+                return true;
+            }
         }
     }
     return false;
