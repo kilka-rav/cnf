@@ -17,6 +17,7 @@ add_executable(
 
 target_link_libraries(runtime_test
     SAT
+    SATCompile
     GTest::gtest_main
 )
 

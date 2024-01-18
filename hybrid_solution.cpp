@@ -7,7 +7,6 @@ int main() {
     constexpr int size = 2;//number of triplets
     constexpr std::array<std::array<int, 3>, size> clauses = {{{1, 2, 3}, {2, 3, -1}}};
     constexpr auto numberVars = getMaximumVariable<size>(clauses);
-    std::cout << numberVars << std::endl;
 
     constexpr auto preSolution = array_repeat<numberVars>(-1);
     constexpr auto prev = compileOptimization<numberVars, size>(clauses, preSolution);

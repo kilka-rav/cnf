@@ -6,15 +6,16 @@ module;
 
 export module SATHybrid;
 
-
+template <typename T>
+consteval T ABS(T a) { return a < 0 ? -a : a; }
 
 export template<int size>
 consteval int getMaximumVariable(const std::array<std::array<int, 3>, size>& clauses) {
     int max = 0;
     for(auto&& clause : clauses) {
         for(auto&& el : clause) {
-            if (max < el) {
-                max = el;
+            if (ABS(max) < ABS(el)) {
+                max = ABS(el);
             }
         }
     }
