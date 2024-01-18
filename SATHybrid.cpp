@@ -1,12 +1,12 @@
 module;
 
-
-
 #include <iostream>
 #include <array>
-
+#include <cmath>
 
 export module SATHybrid;
+
+
 
 export template<int size>
 consteval int getMaximumVariable(const std::array<std::array<int, 3>, size>& clauses) {
@@ -19,6 +19,37 @@ consteval int getMaximumVariable(const std::array<std::array<int, 3>, size>& cla
         }
     }
     return max;
+}
+
+export template <int numberVars, int size>
+bool isSolution(const std::array<std::array<int, 3>, size>& clauses,
+        const std::array<int, numberVars>& possibleSolution) {
+    for(auto&& triplet : clauses) {
+        int a = std::get<0>(triplet);
+        int b = std::get<1>(triplet);
+        int c = std::get<2>(triplet);
+        bool a1, b1, c1;
+        if (a > 0) {
+            a1 = possibleSolution[a - 1];
+        } else {
+            a1 = !possibleSolution[std::abs(a) - 1];
+        }
+        
+        if (b > 0) {
+            b1 = possibleSolution[b - 1];
+        } else {
+            b1 = !possibleSolution[std::abs(b) - 1];
+        }
+        if (c > 0) {
+            c1 = possibleSolution[c - 1];
+        } else {
+            c1 = !possibleSolution[std::abs(c) - 1];
+        }
+        if (!a1 && !b1 && !c1) {
+            return false;
+        } 
+    }
+    return true;
 }
 
 export template<std::size_t N, std::semiregular T>
@@ -61,37 +92,6 @@ consteval std::array<int, maxVal> compileOptimization(const std::array<std::arra
     return sol;
 }
 
-export template <int maxVal, int size>
-bool isSolution(const std::array<std::array<int, 3>, size>& clauses, std::array<int, maxVal>& possibleSolution) {
-    for(auto&& clause : clauses) {
-        int a = clause[0];
-        int b = clause[1];
-        int c = clause[2];
-        bool a1, b1, c1;
-        if (a > 0) {
-            a1 = possibleSolution[a - 1];
-        } else {
-            a1 = !possibleSolution[std::abs(a) - 1];
-        }
-        if (b > 0) {
-            b1 = possibleSolution[b - 1];
-        } else {
-            b1 = !possibleSolution[std::abs(b) - 1];
-        }
-        if (c > 0) {
-            c1 = possibleSolution[c - 1];
-        } else {
-            c1 = !possibleSolution[std::abs(c) - 1];
-        }
-
-        if (!a1 && !b1 && !c1) {
-            return false;
-        }
-    }
-    //replace -1 -> 1 in final solution
-    return true;
-    
-}
 
 export template <int maxVal, int size>
 bool findSolutionRuntime(const std::array<std::array<int, 3>, size>& clauses, std::array<int, maxVal>& preSolution) {

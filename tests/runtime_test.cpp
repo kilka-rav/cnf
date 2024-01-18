@@ -5,8 +5,12 @@ import SAT;
 #include <vector>
 #include <gtest/gtest.h>
 
+
+
 TEST(Simple, first) {
-    std::vector<std::tuple<int, int, int>> clauses = {{1, 2, -3}, {2, 3, -1}};
+    std::vector<std::tuple<int, int, int>> clauses = {
+        #define INCNAME "testData1"
+    };
     int numberVars = getNumberVars(clauses);
     std::vector<int> solution(numberVars);
     bool sol = findSolution(clauses, solution, 0);
