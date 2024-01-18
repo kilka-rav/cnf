@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS_DEBUG "-fconstexpr-backtrace-limit=1000000 -fconstexpr-steps=4294967295 -fconstexpr-depth=4294967295")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -fconstexpr-backtrace-limit=100000 -fconstexpr-steps=4294967295 -fconstexpr-depth=4294967295")
-set(ENABLE_TESTS OFF)
+set(ENABLE_TESTS ON)
 set(EXECUTABLE_OUTPUT_PATH "${CMAKE_CURRENT_BINARY_DIR}/bin")
 
 add_library(SAT)
