@@ -50,6 +50,7 @@ bool isSolution(const std::array<std::array<int, 3>, size>& clauses,
             return false;
         } 
     }
+    //replace -1 -> 1
     return true;
 }
 
