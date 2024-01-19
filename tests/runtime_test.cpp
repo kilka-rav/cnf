@@ -4,6 +4,7 @@ import SAT;
 #include <array>
 #include <gtest/gtest.h>
 #include "testData.h"
+#include "testDataBigClauses.h"
 
 TEST(TEST1, SATSmokeRuntime) {
     constexpr int maximumVariable = getMaximumVariable<size1>(input1);
@@ -61,7 +62,8 @@ TEST(TEST9, SmokeRuntime) {
     std::array<int, maximumVariable> sol2 = {{0}};
     bool runtimeSol = getRuntimeSolution<size9, maximumVariable>(input9, sol2);
     EXPECT_FALSE(runtimeSol);
-}TEST(TEST10, SmokeRuntime) {
+}
+TEST(TEST10, SmokeRuntime) {
     constexpr int maximumVariable = getMaximumVariable<size10>(input10);
     std::array<int, maximumVariable> sol2 = {{0}};
     bool runtimeSol = getRuntimeSolution<size10, maximumVariable>(input10, sol2);
@@ -193,4 +195,30 @@ TEST(TEST30, SatSmokeRuntime) {
     std::array<int, maximumVariable> sol2 = {{0}};
     bool runtimeSol = getRuntimeSolution<size30, maximumVariable>(input30, sol2);
     EXPECT_TRUE(runtimeSol);
+}
+
+TEST(TEST2, BigClausesRuntime) {
+    constexpr int maximumVariable = getMaximumVariable<size_clauses2>(input_clauses2);
+    std::array<int, maximumVariable> sol2 = {{0}};
+    bool runtimeSol = getRuntimeSolution<size_clauses2, maximumVariable>(input_clauses2, sol2);
+    EXPECT_FALSE(runtimeSol);
+}
+
+TEST(TEST3, BigClausesRuntime) {
+    constexpr int maximumVariable = getMaximumVariable<size_clauses3>(input_clauses3);
+    std::array<int, maximumVariable> sol2 = {{0}};
+    bool runtimeSol = getRuntimeSolution<size_clauses3, maximumVariable>(input_clauses3, sol2);
+    EXPECT_FALSE(runtimeSol);
+}
+TEST(TEST4, BigClausesRuntime) {
+    constexpr int maximumVariable = getMaximumVariable<size_clauses4>(input_clauses4);
+    std::array<int, maximumVariable> sol2 = {{0}};
+    bool runtimeSol = getRuntimeSolution<size_clauses4, maximumVariable>(input_clauses4, sol2);
+    EXPECT_FALSE(runtimeSol);
+}
+TEST(TEST5, BigClausesRuntime) {
+    constexpr int maximumVariable = getMaximumVariable<size_clauses5>(input_clauses5);
+    std::array<int, maximumVariable> sol2 = {{0}};
+    bool runtimeSol = getRuntimeSolution<size_clauses5, maximumVariable>(input_clauses5, sol2);
+    EXPECT_FALSE(runtimeSol);
 }

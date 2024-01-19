@@ -65,7 +65,7 @@ export template <int maxVal, int size>
 consteval int analyzeVar(const std::array<std::array<int, 3>, size>& clauses, const int var) {
     int negativeCount = 0;
     int positiveCount = 0;
-    for(auto&& clause : clauses) {
+    for(auto& clause : clauses) {
         for(auto&& el : clause) {
             if (el == var) {
                 positiveCount++;
@@ -102,7 +102,7 @@ void replaceToNormalValue(std::array<int, maxValue>& solution) {
 }
 
 export template <int maxValue>
-consteval std::array<bool, maxValue> getGlobalState(const std::array<int, maxValue>& preSolution) {
+constexpr std::array<bool, maxValue> getGlobalState(const std::array<int, maxValue>& preSolution) {
     std::array<bool, maxValue> a{};
     for(int i = 0; i < preSolution.size(); ++i) {
         if (preSolution[i] != -1) {

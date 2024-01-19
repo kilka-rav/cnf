@@ -4,6 +4,7 @@ import SATCompile;
 #include <array>
 #include <gtest/gtest.h>
 #include "testData.h"
+#include "testDataBigClauses.h"
 
 TEST(TEST1, Compile) {
     constexpr auto numberVars = getMaximumVariable<size1>(input1);
@@ -204,3 +205,31 @@ TEST(TEST30, SatSmokeCompileTime) {
     constexpr auto sol = getCompileSolution<size30, maximumVariable>(input30);
     EXPECT_TRUE(sol.first);;
 }
+/*
+TEST(TEST2, BigClausesCompileTime) {
+    constexpr int maximumVariable = getMaximumVariable<size_clauses2>(input_clauses2);
+    
+    constexpr auto sol = getCompileSolution<size_clauses2, maximumVariable>(input_clauses2);
+    EXPECT_FALSE(sol.first);;
+}
+
+TEST(TEST3, BigClausesCompileTime) {
+    constexpr int maximumVariable = getMaximumVariable<size_clauses3>(input_clauses3);
+    
+    constexpr auto sol = getCompileSolution<size_clauses3, maximumVariable>(input_clauses3);
+    EXPECT_FALSE(sol.first);;
+}
+TEST(TEST4, BigClausesCompileTime) {
+    constexpr int maximumVariable = getMaximumVariable<size_clauses4>(input_clauses4);
+    
+    constexpr auto sol = getCompileSolution<size_clauses4, maximumVariable>(input_clauses4);
+    EXPECT_FALSE(sol.first);;
+}
+
+TEST(TEST5, BigClausesCompileTime) {
+    constexpr int maximumVariable = getMaximumVariable<size_clauses5>(input_clauses5);
+    
+    constexpr auto sol = getCompileSolution<size_clauses5, maximumVariable>(input_clauses5);
+    EXPECT_FALSE(sol.first);;
+}
+*/
