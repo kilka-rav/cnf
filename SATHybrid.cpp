@@ -94,23 +94,44 @@ consteval std::array<int, maxVal> compileOptimization(const std::array<std::arra
     return sol;
 }
 
+template <int maxValue>
+void replaceToNormalValue(std::array<int, maxValue>& solution) {
+    for(auto&& t : solution) {
+        t = std::abs(t);
+    }
+}
+
+export template <int maxValue>
+consteval std::array<bool, maxValue> getGlobalState(const std::array<int, maxValue>& preSolution) {
+    std::array<bool, maxValue> a{};
+    for(int i = 0; i < preSolution.size(); ++i) {
+        if (preSolution[i] != -1) {
+            a[i] = true;
+        }
+    }
+    return a;
+}
 
 export template <int maxVal, int size>
-bool findSolutionRuntime(const std::array<std::array<int, 3>, size>& clauses, std::array<int, maxVal>& preSolution) {
+bool findSolutionRuntime(const std::array<std::array<int, 3>, size>& clauses, std::array<int, maxVal>& preSolution, const std::array<bool, maxVal>& globalState, int index = 0) {
+    if (index > maxVal) {
+        return false;
+    }
     if (isSolution<maxVal, size>(clauses, preSolution)) {
+        replaceToNormalValue<maxVal>(preSolution);
         return true;
     }
-    for(int i = 0; i < preSolution.size() - 1; ++i) {
-        if (preSolution[i] == -1) {
-            preSolution[i] = 0;
-            if (findSolutionRuntime<maxVal, size>(clauses, preSolution)) {
-                return true;
-            }
-            preSolution[i] = 1;
-            if (findSolutionRuntime<maxVal, size>(clauses, preSolution)) {
-                return true;
-            }
-        }
+    if (globalState[index]) {
+        return findSolutionRuntime<maxVal, size>(clauses, preSolution, globalState, index + 1);
+        
+    }
+    preSolution[index] = 0;
+    if (findSolutionRuntime<maxVal, size>(clauses, preSolution, globalState, index + 1)) {
+        return true;
+    }
+    preSolution[index] = 1;
+    if (findSolutionRuntime<maxVal, size>(clauses, preSolution, globalState, index + 1)) {
+        return true;
     }
     return false;
 }

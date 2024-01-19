@@ -43,6 +43,7 @@ int main() {
     constexpr auto preSolution = array_repeat<maximumVariable>(-1);
     constexpr auto prev = compileOptimization<maximumVariable, size>(input, preSolution);
     auto preComputedSolution = prev;
-    bool hybridSol = findSolutionRuntime<maximumVariable, size>(input, preComputedSolution);
+    constexpr auto states = getGlobalState<maximumVariable>(prev);
+    bool hybridSol = findSolutionRuntime<maximumVariable, size>(input, preComputedSolution, states);
     compare(compileSolb, runtimeSol, hybridSol);
 }
