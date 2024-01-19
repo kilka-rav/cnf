@@ -294,7 +294,7 @@ TEST(TEST2, BigClausesHybrid) {
     bool sol = findSolutionRuntime<maximumVariable, size_clauses2>(input_clauses2, preComputedSolution, states);
     EXPECT_FALSE(sol);
 }
-/*
+
 TEST(TEST3, BigClausesHybrid) {
     constexpr int maximumVariable = getMaximumVariable<size_clauses3>(input_clauses3);
     constexpr auto preSolution = array_repeat<maximumVariable>(-1);
@@ -304,22 +304,3 @@ TEST(TEST3, BigClausesHybrid) {
     bool sol = findSolutionRuntime<maximumVariable, size_clauses3>(input_clauses3, preComputedSolution, states);
     EXPECT_FALSE(sol);
 }
-TEST(TEST4, BigClausesHybrid) {
-    constexpr int maximumVariable = getMaximumVariable<size_clauses4>(input_clauses4);
-    constexpr auto preSolution = array_repeat<maximumVariable>(-1);
-    constexpr auto prev = compileOptimization<maximumVariable, size_clauses4>(input_clauses4, preSolution);
-    auto preComputedSolution = prev;
-    constexpr auto states = getGlobalState<maximumVariable>(prev);
-    bool sol = findSolutionRuntime<maximumVariable, size_clauses4>(input_clauses4, preComputedSolution, states);
-    EXPECT_FALSE(sol);
-}
-TEST(TEST5, BigClausesHybrid) {
-    constexpr int maximumVariable = getMaximumVariable<size_clauses5>(input_clauses5);
-    constexpr auto preSolution = array_repeat<maximumVariable>(-1);
-    constexpr auto prev = compileOptimization<maximumVariable, size_clauses5>(input_clauses5, preSolution);
-    auto preComputedSolution = prev;
-    constexpr auto states = getGlobalState<maximumVariable>(prev);
-    bool sol = findSolutionRuntime<maximumVariable, size_clauses5>(input_clauses5, preComputedSolution, states);
-    EXPECT_FALSE(sol);
-}
-*/

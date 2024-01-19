@@ -205,7 +205,7 @@ TEST(TEST30, SatSmokeCompileTime) {
     constexpr auto sol = getCompileSolution<size30, maximumVariable>(input30);
     EXPECT_TRUE(sol.first);;
 }
-/*
+
 TEST(TEST2, BigClausesCompileTime) {
     constexpr int maximumVariable = getMaximumVariable<size_clauses2>(input_clauses2);
     
@@ -219,17 +219,3 @@ TEST(TEST3, BigClausesCompileTime) {
     constexpr auto sol = getCompileSolution<size_clauses3, maximumVariable>(input_clauses3);
     EXPECT_FALSE(sol.first);;
 }
-TEST(TEST4, BigClausesCompileTime) {
-    constexpr int maximumVariable = getMaximumVariable<size_clauses4>(input_clauses4);
-    
-    constexpr auto sol = getCompileSolution<size_clauses4, maximumVariable>(input_clauses4);
-    EXPECT_FALSE(sol.first);;
-}
-
-TEST(TEST5, BigClausesCompileTime) {
-    constexpr int maximumVariable = getMaximumVariable<size_clauses5>(input_clauses5);
-    
-    constexpr auto sol = getCompileSolution<size_clauses5, maximumVariable>(input_clauses5);
-    EXPECT_FALSE(sol.first);;
-}
-*/

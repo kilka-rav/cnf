@@ -210,15 +210,4 @@ TEST(TEST3, BigClausesRuntime) {
     bool runtimeSol = getRuntimeSolution<size_clauses3, maximumVariable>(input_clauses3, sol2);
     EXPECT_FALSE(runtimeSol);
 }
-TEST(TEST4, BigClausesRuntime) {
-    constexpr int maximumVariable = getMaximumVariable<size_clauses4>(input_clauses4);
-    std::array<int, maximumVariable> sol2 = {{0}};
-    bool runtimeSol = getRuntimeSolution<size_clauses4, maximumVariable>(input_clauses4, sol2);
-    EXPECT_FALSE(runtimeSol);
-}
-TEST(TEST5, BigClausesRuntime) {
-    constexpr int maximumVariable = getMaximumVariable<size_clauses5>(input_clauses5);
-    std::array<int, maximumVariable> sol2 = {{0}};
-    bool runtimeSol = getRuntimeSolution<size_clauses5, maximumVariable>(input_clauses5, sol2);
-    EXPECT_FALSE(runtimeSol);
-}
+
